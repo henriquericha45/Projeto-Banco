@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Corrente extends Conta implements Pix {
 
-    public Corrente(int numConta, String nomeCorrentista, int cpf) {
+    public Corrente(String numConta, String nomeCorrentista, int cpf) {
         super(numConta, nomeCorrentista, cpf);
     }
 
@@ -16,15 +16,19 @@ public class Corrente extends Conta implements Pix {
 
     protected void depositar(double valor){
         this.saldo += valor;
+        this.historico.add(new Operacao(valor, "deposito"));
+
     }
 
     protected void sacar(double valor){
         this.saldo -= valor;
+        this.historico.add(new Operacao(valor, "saque"));
     }
 
     // i
     public void cadastraPix(ArrayList<Integer> listaPix) {
         listaPix.add(this.cpf);
+        this.historico.add(new Operacao(0, "Cadastro PIX"));
     }
 
     // ii
@@ -34,6 +38,7 @@ public class Corrente extends Conta implements Pix {
             if(valor > 0){
                 this.saldo -= valor;
                 destinatario.recebePix(this.cpf, valor);
+                this.historico.add(new Operacao(valor, "PIX enviado"));
             } else {
                 System.out.println("Você não pode realizar uma transacão com este valor!");
             }
@@ -44,7 +49,19 @@ public class Corrente extends Conta implements Pix {
 
     public void recebePix(int cpfDonatario, double valor){
         this.saldo += valor;
+        this.historico.add(new Operacao(valor, "PIX recebido"));
         System.out.println("Pix recebido da pessoa de CPF " + cpfDonatario + " de valor R$" + valor);
+    }
+
+	public String getNumConta() {
+		return this.numConta;
+	}
+
+    public void imprimirConta() {
+        System.out.println("Numero conta: " + this.numConta);
+        System.out.println("Nome correntista: " + this.nomeCorrentista);
+        System.out.println("CPF correntista: " + this.cpf);
+        System.out.println("Saldo: " + this.saldo);
     }
     
 }
