@@ -32,5 +32,12 @@ public class Poupanca extends Conta implements Remunerada {
         System.out.println("CPF correntista: " + this.cpf);
         System.out.println("Saldo: " + this.saldo);
     }
+
+    public void imprimirExtrato() {
+        System.out.println("Extrato:");
+        for(Operacao op : this.historico){
+            op.imprimirExtrato();
+        }
+    }
     
 }

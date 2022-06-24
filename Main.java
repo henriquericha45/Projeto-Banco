@@ -19,7 +19,6 @@ public class Main {
         do {
 
 
-
             System.out.println("*******************************");
             System.out.println("*            BANCO            *");
             System.out.println("*******************************");
@@ -35,7 +34,7 @@ public class Main {
             System.out.println("8 - Consulta Extrato");
             System.out.println("8 - Listar Contas Cadastradas");
 
-            System.out.println("Insira a opcao que deseja: ");
+            System.out.println("\nInsira a opcao que deseja: ");
             opcao = leitor.nextInt();
 
 
@@ -184,6 +183,15 @@ public class Main {
                     break;
                 case 8:
                     // consulta extrato
+
+                    System.out.println("Insira a conta que deseja consultar extrato: ");
+                    numConta = leitor.next();
+                    for (Conta c : contas) {
+                        if(c.getNumConta().equals(numConta)) {
+                            c.imprimirExtrato();
+                            break;
+                        }
+                    }
                     
 
                     break;
@@ -205,6 +213,8 @@ public class Main {
 
 
         } while(opcao!=0);
+
+        leitor.close();
 
     }
 }

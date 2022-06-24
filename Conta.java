@@ -22,4 +22,6 @@ public abstract class Conta {
     public abstract String getNumConta();
 
     public abstract void imprimirConta();
+
+    public abstract void imprimirExtrato();
 }
