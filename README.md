@@ -33,7 +33,7 @@ que aceitam PIX (nem todas as contas correntes precisam se cadastrar no sistema 
 Uma sessão típica (serve como sugestão de organização do menu) consiste em:
 1. **criar conta corrente:** cria uma conta corrente
 2. **criar conta poupança:** cria uma conta poupança
-3. **efetyar deoósito:** efetua um depósito em uma conta (importante: chama o método depositar da classe abstrata, portanto a partir do número da conta informado apenas solicita o valor, pois independe se é Corrente ou Poupança, pegando a data do sistema); 
+3. **efetuar deoósito:** efetua um depósito em uma conta (importante: chama o método depositar da classe abstrata, portanto a partir do número da conta informado apenas solicita o valor, pois independe se é Corrente ou Poupança, pegando a data do sistema); 
 4. **efetuar saque:** efetua um saque em uma conta (importante: chama o método sacar da classe abstrata, portanto a partir do número da conta informado apenas solicita o valor, pois independe se é Corrente ou Poupança, pegando a data do sistema); 
  
 5. **aplicar correção:** o sistema pergunta a taxa de correção e aplica uma operação de correção monetária em todas as contas do tipo Poupança (importante: a operação fica repertoriada na lista de operações da conta, com data e valor que foi calculado conforme o saldo vigente); 

@@ -14,10 +14,7 @@ public class Main {
         Double valor;
         Conta conta;
 
-
         do {
-
-
             System.out.println("*******************************");
             System.out.println("*            BANCO            *");
             System.out.println("*******************************");
@@ -31,38 +28,41 @@ public class Main {
             System.out.println("6 - Cadastra PIX");
             System.out.println("7 - Efetua PIX");
             System.out.println("8 - Consulta Extrato");
-            System.out.println("8 - Listar Contas Cadastradas");
+            System.out.println("9 - Listar Contas Cadastradas");
 
             System.out.println("\nInsira a opcao que deseja: ");
             opcao = leitor.nextInt();
 
-
-
             switch (opcao) {
                 case 1:
                     //cria uma conta corrente
-                    System.out.println("Insira o numero da conta: ");
-                    numConta = leitor.next();
-                    
-                    numConta = "001" + numConta;
-                    System.out.println("Insira o nome do correntista: ");
-                    nomeCorrentista = leitor.next();
-                    System.out.println("Insira o CPF do correntista: ");
-                    cpf = leitor.nextInt();
-                    
-                    conta = new Corrente(numConta, nomeCorrentista, cpf);
-                    contas.add(conta);
-                    System.out.println("Conta corrente criada!");
-                    
+                    try {
+                        System.out.println("Insira o numero da conta: ");
+                        numConta = leitor.next();
+
+                        numConta = "001" + numConta;
+                        System.out.println("Insira o nome do correntista: ");
+                        nomeCorrentista = leitor.next();
+
+                        System.out.println("Insira o CPF do correntista: ");
+                        cpf = leitor.nextInt();
+                        
+                        conta = new Corrente(numConta, nomeCorrentista, cpf);
+                        contas.add(conta);
+                        System.out.println("Conta corrente criada!");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     break;
                     
                 case 2:
                     // cria uma conta poupanca
                     System.out.println("Insira o numero da conta: ");
                     numConta = leitor.next();
-                    numConta = "013" + numConta;
+
                     System.out.println("Insira o nome do correntista: ");
                     nomeCorrentista = leitor.next();
+
                     System.out.println("Insira o CPF do correntista: ");
                     cpf = leitor.nextInt();
 
@@ -70,30 +70,18 @@ public class Main {
                     contas.add(conta);
                     System.out.println("Conta corrente poupanca!");
                     break;
-
                 case 3: 
                     // efetua um deposito
                     System.out.println("Insira a conta que deseja depositar: ");
                     numConta = leitor.next();
                     System.out.println("Insira o valor do deposito: ");
                     valor = leitor.nextDouble();
-                    
-                    
                     for (int i=0; i<contas.size(); i++) {
                         if(contas.get(i).numConta.equals(numConta)){
                             contas.get(i).depositar(valor);
                         }
                     }
-                    
-                    /* 
-                    for (Conta c : contas) {
-                        if(c.getNumConta().equals(numConta)) {
-                            c.depositar(valor);
-                        }
-                    }
-                    */
                     break;
-
                 case 4:
                     // efetua um saque
                     System.out.println("Insira a conta que deseja sacar: ");
@@ -107,7 +95,6 @@ public class Main {
                             break;
                         }
                     }
-
                     break;
                 case 5:
                     // aplica correcao (poupanca)
@@ -122,7 +109,6 @@ public class Main {
                             } else {
                                 System.out.println("Não é uma conta poupança");
                             }
-
                             break;
                         }
                     }
@@ -141,12 +127,9 @@ public class Main {
                             } else {
                                 System.out.println("Não é uma conta corrente");
                             }
-
                             break;
                         }
                     }
-
-
                     break;
                 case 7:
                     // efetua PIX
@@ -159,26 +142,18 @@ public class Main {
                     valor = leitor.nextDouble();
                     for(Conta c : contas){
                         if(c.cpf == cpf){
-                        for (Conta co : contas) {
-                            if(co.getNumConta().equals(numConta)) {
-                                if(co instanceof Corrente) {
-
-                                    ((Corrente) co).efetuaPix((Corrente) c , valor);
-
-                                } else {
-                                    System.out.println("Não é uma conta corrente");
-                                }
-
-                                break;
-                            }
-                            
-                            }
-                                                        
+							for (Conta co : contas) {
+								if(co.getNumConta().equals(numConta)) {
+									if(co instanceof Corrente) {
+										((Corrente) co).efetuaPix((Corrente) c , valor);
+									} else {
+										System.out.println("Não é uma conta corrente");
+									}
+									break;
+                            	}
+                        	}
                         }
                     }
-
-
-
                     break;
                 case 8:
                     // consulta extrato
@@ -191,10 +166,7 @@ public class Main {
                             break;
                         }
                     }
-                    
-
                     break;
-
                 case 9:
                     //imprimir contas cadastradas
 
@@ -202,10 +174,7 @@ public class Main {
                     for (Conta c : contas) {
                         c.imprimirConta();
                     }
-                        
                     break;
-
-
                 default:
                     break;
             }
